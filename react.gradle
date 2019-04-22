@@ -26,7 +26,7 @@ afterEvaluate {
         def jsBundleDir = file("$buildDir/generated/assets/react/${targetPath}")
         def resourcesDir = file("$buildDir/generated/res/react/${targetPath}")
 
-        def jsBundleFile = file("$jsBundleDir/$bundleAssetName")
+        def jsBundleFile = file("src/main/assets/$bundleAssetName")
 
         // Additional node and packager commandline arguments
         def nodeExecutableAndArgs = config.nodeExecutableAndArgs ?: ["node"]
@@ -71,7 +71,7 @@ afterEvaluate {
                     "--reset-cache", "--entry-file", entryFile, "--bundle-output", jsBundleFile, "--assets-dest", resourcesDir, *extraArgs)
             } else {
                 commandLine(*nodeExecutableAndArgs, cliPath, bundleCommand, "--platform", "android", "--dev", "${devEnabled}",
-                    "--reset-cache", "--entry-file", entryFile, "--bundle-output", jsBundleFile, "--assets-dest", resourcesDir, *extraArgs)
+                    "--reset-cache", "--entry-file", entryFile, "--bundle-output", jsBundleFile, "--assets-dest", "cntral/src/main/res/", *extraArgs)
             }
 
             enabled config."bundleIn${targetName}" ||
